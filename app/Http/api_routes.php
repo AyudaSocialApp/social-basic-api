@@ -10,6 +10,10 @@
 */
 
 
+Route::post('login', 'SesionAPIController@store');
+
+Route::delete('logout', 'SesionAPIController@destroy');
+
 
 Route::resource('typeneedies', 'TypeneedyAPIController');
 
@@ -28,8 +32,14 @@ Route::resource('typehelps', 'TypehelpAPIController');
 
 Route::resource('needies', 'NeedyAPIController');
 
-Route::resource('images', 'ImageAPIController');
+
 
 Route::resource('contributors', 'ContributorAPIController');
 
 Route::resource('helps', 'HelpAPIController');
+
+Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
+
+  Route::resource('images', 'ImageAPIController');
+
+});
