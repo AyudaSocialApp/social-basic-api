@@ -12,7 +12,7 @@
 
 Route::post('login', 'SesionAPIController@store');
 
-Route::delete('logout', 'SesionAPIController@destroy');
+Route::get('logout', 'SesionAPIController@destroy');
 
 
 Route::resource('typeneedies', 'TypeneedyAPIController');

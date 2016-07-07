@@ -36,14 +36,17 @@ class SesionAPIController extends InfyOmBaseController
 
     public function destroy()
     {
+        try {
+            $token = JWTAuth::getToken();
+            // JWTAuth::removeToken($token);
 
-        $token = JWTAuth::getToken();
-        // JWTAuth::removeToken($token);
+            if ($token) {
+              JWTAuth::setToken($token)->invalidate();
+            }
+        } catch (Exception $e) {
 
-        if ($token) {
-          JWTAuth::setToken($token)->invalidate();
         }
 
-        return $this->sendResponse($id, 'Sesion deleted successfully');
+        return $this->sendResponse('-', 'Sesion deleted successfully');
     }
 }
