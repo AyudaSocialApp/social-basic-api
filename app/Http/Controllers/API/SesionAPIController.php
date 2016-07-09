@@ -22,7 +22,7 @@ class SesionAPIController extends InfyOmBaseController
         $credentials = $request->only(['email','password']);
 
         if(!$token = JWTAuth::attempt($credentials)){
-            return Response::json(ResponseUtil::makeError('failure logging'), 404);
+            return Response::json(ResponseUtil::makeError('failure logging'), 200);
         }
 
         $user = JWTAuth::toUser($token);
@@ -39,7 +39,6 @@ class SesionAPIController extends InfyOmBaseController
         try {
             $token = JWTAuth::getToken();
             // JWTAuth::removeToken($token);
-
             if ($token) {
               JWTAuth::setToken($token)->invalidate();
             }
