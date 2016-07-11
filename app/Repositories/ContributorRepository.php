@@ -19,6 +19,7 @@ class ContributorRepository extends BaseRepository
         'type_contributors_id',
         'base64',
         'filetype',
+        'preview',
         'cellphone_telephone_contact',
         'users_id'
     ];

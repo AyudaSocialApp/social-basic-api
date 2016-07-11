@@ -66,8 +66,10 @@ class Needy extends Model
         'type_identifications_id',
         'history',
         'contributor',
+        'preview',
         'cellphone_telephone_contact',
-        'users_id'
+        'users_id',
+        'filetype'
     ];
 
     /**

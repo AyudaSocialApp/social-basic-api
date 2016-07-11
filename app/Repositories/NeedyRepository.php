@@ -18,7 +18,9 @@ class NeedyRepository extends BaseRepository
         'history',
         'contributor',
         'cellphone_telephone_contact',
-        'users_id'
+        'users_id',
+        'preview',
+        'filetype'
     ];
 
     /**

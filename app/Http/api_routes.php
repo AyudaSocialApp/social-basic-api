@@ -14,6 +14,8 @@ Route::post('login', 'SesionAPIController@store');
 
 Route::get('logout', 'SesionAPIController@destroy');
 
+Route::post('register/{rol}', 'UserAPIController@register');
+
 
 Route::resource('typeneedies', 'TypeneedyAPIController');
 
