@@ -34,7 +34,7 @@ class UserRepository extends BaseRepository
         $tablerol = "";
         $himage = new Image(' ');
         $newuser = [
-          'email' => strtolower($input['names']),
+          'email' => strtolower($input['username']),
           'name' => ucfirst(strtolower($input['names']))." ".ucfirst(strtolower($input['last_names'])),
           'password' => Hash::make($input['password'])
         ];
@@ -50,9 +50,9 @@ class UserRepository extends BaseRepository
             "type_identifications_id" => $input['type_identifications_id']['id'],
             "nit_id" => $input['nit_id'],
             "type_contributors_id" => $input['type_contributors_id'],
-            "base64" => $himage->resizeBase64img($input['base64']['base64'],strtolower($input['base64']['filetype']),80,71),
+            "base64" => $himage->resizeBase64andScaleHeight($input['base64']['base64'],strtolower($input['base64']['filetype']),300),
             "filetype" => strtolower($input['base64']['filetype']),
-            "preview" => $himage->resizeBase64andScaleWidth($input['base64']['base64'],strtolower($input['base64']['filetype']),300),
+            "preview" => $himage->resizeBase64img($input['base64']['base64'],strtolower($input['base64']['filetype']),80,71),
             "cellphone_telephone_contact" => $input['cellphone_telephone_contact']
           ];
         }else{
@@ -66,7 +66,7 @@ class UserRepository extends BaseRepository
             "identification" => $input['identification'],
             "history" => $input['history'],
             "filetype" => strtolower($input['base64']['filetype']),
-            "preview" => $himage->resizeBase64andScaleWidth($input['base64']['base64'],strtolower($input['base64']['filetype']),300),
+            "preview" => $himage->resizeBase64img($input['base64']['base64'],strtolower($input['base64']['filetype']),80,71),
             "cellphone_telephone_contact" => $input['cellphone_telephone_contact'],
             "contributor" => $input['contributor'],
             "city" => $input['city']

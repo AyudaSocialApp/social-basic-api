@@ -104,7 +104,8 @@ class Contributor extends Model
         'filetype',
         'preview',
         'cellphone_telephone_contact',
-        'users_id'
+        'users_id',
+        'name_business'
     ];
 
     /**
@@ -121,7 +122,8 @@ class Contributor extends Model
         'type_contributors_id' => 'integer',
         'filetype' => 'string',
         'cellphone_telephone_contact' => 'string',
-        'users_id' => 'integer'
+        'users_id' => 'integer',
+        'name_business' => 'string'
     ];
 
     /**

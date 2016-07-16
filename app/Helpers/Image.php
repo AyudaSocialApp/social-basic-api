@@ -12,7 +12,7 @@ namespace Helpers; // Optional
 /**
  * Description of Image
  *
- * Dependence for get information of image of input
+ * Dependence for Image processing
  *
  * @author stivenson
  */
@@ -21,32 +21,19 @@ namespace Helpers; // Optional
 class Image {
 
 
-  private $image;
-  
-  function __construct($image){
-    $this->image = $image;
-  }
-
   // obj = new Image(\Input::file('image'));
 
+  public function getMime($image){
 
-  public function getMime(){
-
-    $imgpost = $this->image; 
-    return $imgpost->getClientOriginalExtension();
+    return $image->getClientOriginalExtension();
 
   }
 
-  //obj->getMime;
 
-  
+  public function getBase64($image){
 
-  public function getBase64(){
-
-    $imgpost = $this->image; 
-
-    $flujo = fopen($imgpost->getRealPath(),'r');
-    $enbase64 =  base64_encode(fread($flujo, filesize($imgpost->getRealPath())));
+    $flujo = fopen($image->getRealPath(),'r');
+    $enbase64 =  base64_encode(fread($flujo, filesize($image->getRealPath())));
     fclose($flujo);
     return $enbase64;
 
@@ -189,5 +176,60 @@ class Image {
 
   }
 
+
+  public function resizeBase64andScaleHeight($base64img,$mimeimg,$newwidth){
+
+    // Get new sizes
+    list($width, $height) = getimagesizefromstring(base64_decode($base64img));
+
+
+    // Calcular nuevo ancho con la misma perdida o ganancia proporcial del alto
+    $porNewWidth = ($newwidth * 100) / $width;
+    $newHeight =  (int)($height*($porNewWidth / 100));
+
+    ob_start();
+    $temp_thumb = imagecreatetruecolor($newwidth,$newHeight);
+    imagealphablending( $temp_thumb, false );
+    imagesavealpha( $temp_thumb, true );
+
+    $source = imagecreatefromstring(base64_decode($base64img));
+
+    // Resize
+    imagecopyresized($temp_thumb, $source, 0, 0, 0, 0, $newwidth, $newHeight, $width, $width);
+
+
+    switch ($mimeimg) {
+      case 'png':
+      case 'image/png':
+      case 'PNG':
+      case 'IMAGE/PNG':
+        imagepng($temp_thumb, null);
+        break;
+      case 'jpg':
+      case 'image/jpg':
+      case 'jpeg':
+      case 'JPEG':
+      case 'JPG':
+      case 'IMAGE/JPG':
+      case 'IMAGE/JPEG':
+      case 'image/jpeg':
+        imagejpeg($temp_thumb, null);
+        break;
+      case 'image/gif':
+      case 'gif':
+      case 'GIT':
+      case 'IMAGE/GIF':
+        imagegif($temp_thumb, null);
+    }
+
+    $stream = ob_get_clean();
+    $newB64 = base64_encode($stream);
+    
+    imagedestroy($temp_thumb);
+    imagedestroy($source);
+
+    return $newB64;
+
+  }
 
 }
