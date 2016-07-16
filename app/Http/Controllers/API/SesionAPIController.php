@@ -21,6 +21,8 @@ class SesionAPIController extends InfyOmBaseController
     {
         $credentials = $request->only(['email','password']);
 
+        $credentials['email'] = strtolower($credentials['email']);
+
         if(!$token = JWTAuth::attempt($credentials)){
             return Response::json(ResponseUtil::makeError('failure logging'), 200);
         }

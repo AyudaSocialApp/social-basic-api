@@ -129,14 +129,5 @@ class Contributor extends Model
      *
      * @var array
      */
-    public static $rules = [
-        'names' => 'required',
-        'last_names' => 'required',
-        'privacy' => 'required',
-        'type_contributors_id' => 'required',
-        'base64' => 'required',
-        'filetype' => 'required',
-        'cellphone_telephone_contact' => 'required',
-        'users_id' => 'required'
-    ];
+    public static $rules = [];
 }

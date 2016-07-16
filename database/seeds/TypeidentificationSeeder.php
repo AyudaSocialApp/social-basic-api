@@ -13,9 +13,9 @@ class TypeidentificationSeeder extends Seeder
     public function run()
     {
         DB::table('typeidentifications')->delete();
-        Typeidentification::create(['name' => 'CÉDULA']);
-        Typeidentification::create(['name' => 'CÉDULA DE EXTRANJERÍA ']);
-        Typeidentification::create(['name' => 'PASAPORTE']);
-        Typeidentification::create(['name' => 'NIT']);
+        Typeidentification::create(['id'=>1, 'name' => 'CÉDULA']);
+        Typeidentification::create(['id'=>2, 'name' => 'CÉDULA DE EXTRANJERÍA ']);
+        Typeidentification::create(['id'=>3, 'name' => 'PASAPORTE']);
+        Typeidentification::create(['id'=>4, 'name' => 'NIT']);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateUserAPIRequest;
-use App\Http\Requests\API\UpdateUserAPIRequest;
-use App\User;
-use App\Repositories\UserRepository;
+use App\Http\Requests\API\CreateExampleAPIRequest;
+use App\Http\Requests\API\UpdateExampleAPIRequest;
+use App\Models\Example;
+use App\Repositories\ExampleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
@@ -14,18 +14,18 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 /**
- * Class UserController
+ * Class ExampleController
  * @package App\Http\Controllers\API
  */
 
-class UserAPIController extends InfyOmBaseController
+class ExampleAPIController extends InfyOmBaseController
 {
-    /** @var  UserRepository */
-    private $userRepository;
+    /** @var  ExampleRepository */
+    private $exampleRepository;
 
-    public function __construct(UserRepository $userRepo)
+    public function __construct(ExampleRepository $exampleRepo)
     {
-        $this->userRepository = $userRepo;
+        $this->exampleRepository = $exampleRepo;
     }
 
     /**
@@ -33,10 +33,10 @@ class UserAPIController extends InfyOmBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/user",
-     *      summary="Get a listing of the User.",
-     *      tags={"User"},
-     *      description="Get all User",
+     *      path="/examples",
+     *      summary="Get a listing of the Examples.",
+     *      tags={"Example"},
+     *      description="Get all Examples",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -50,7 +50,7 @@ class UserAPIController extends InfyOmBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/User")
+     *                  @SWG\Items(ref="#/definitions/Example")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -62,29 +62,29 @@ class UserAPIController extends InfyOmBaseController
      */
     public function index(Request $request)
     {
-        $this->userRepository->pushCriteria(new RequestCriteria($request));
-        $this->userRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $user = $this->userRepository->all();
+        $this->exampleRepository->pushCriteria(new RequestCriteria($request));
+        $this->exampleRepository->pushCriteria(new LimitOffsetCriteria($request));
+        $examples = $this->exampleRepository->all();
 
-        return $this->sendResponse($user->toArray(), 'User retrieved successfully');
+        return $this->sendResponse($examples->toArray(), 'Examples retrieved successfully');
     }
 
     /**
-     * @param CreateUserAPIRequest $request
+     * @param CreateExampleAPIRequest $request
      * @return Response
      *
      * @SWG\Post(
-     *      path="/user",
-     *      summary="Store a newly created User in storage",
-     *      tags={"User"},
-     *      description="Store User",
+     *      path="/examples",
+     *      summary="Store a newly created Example in storage",
+     *      tags={"Example"},
+     *      description="Store Example",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="User that should be stored",
+     *          description="Example that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/User")
+     *          @SWG\Schema(ref="#/definitions/Example")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -97,7 +97,7 @@ class UserAPIController extends InfyOmBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/User"
+     *                  ref="#/definitions/Example"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -107,13 +107,13 @@ class UserAPIController extends InfyOmBaseController
      *      )
      * )
      */
-    public function store(CreateUserAPIRequest $request)
+    public function store(CreateExampleAPIRequest $request)
     {
         $input = $request->all();
 
-        $user = $this->userRepository->create($input);
+        $examples = $this->exampleRepository->create($input);
 
-        return $this->sendResponse($user->toArray(), 'User saved successfully');
+        return $this->sendResponse($examples->toArray(), 'Example saved successfully');
     }
 
     /**
@@ -121,14 +121,14 @@ class UserAPIController extends InfyOmBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/user/{id}",
-     *      summary="Display the specified User",
-     *      tags={"User"},
-     *      description="Get User",
+     *      path="/examples/{id}",
+     *      summary="Display the specified Example",
+     *      tags={"Example"},
+     *      description="Get Example",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of User",
+     *          description="id of Example",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -144,7 +144,7 @@ class UserAPIController extends InfyOmBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/User"
+     *                  ref="#/definitions/Example"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -156,30 +156,30 @@ class UserAPIController extends InfyOmBaseController
      */
     public function show($id)
     {
-        /** @var User $user */
-        $user = $this->userRepository->find($id);
+        /** @var Example $example */
+        $example = $this->exampleRepository->find($id);
 
-        if (empty($user)) {
-            return Response::json(ResponseUtil::makeError('User not found'), 404);
+        if (empty($example)) {
+            return Response::json(ResponseUtil::makeError('Example not found'), 404);
         }
 
-        return $this->sendResponse($user->toArray(), 'User retrieved successfully');
+        return $this->sendResponse($example->toArray(), 'Example retrieved successfully');
     }
 
     /**
      * @param int $id
-     * @param UpdateUserAPIRequest $request
+     * @param UpdateExampleAPIRequest $request
      * @return Response
      *
      * @SWG\Put(
-     *      path="/user/{id}",
-     *      summary="Update the specified User in storage",
-     *      tags={"User"},
-     *      description="Update User",
+     *      path="/examples/{id}",
+     *      summary="Update the specified Example in storage",
+     *      tags={"Example"},
+     *      description="Update Example",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of User",
+     *          description="id of Example",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -187,9 +187,9 @@ class UserAPIController extends InfyOmBaseController
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="User that should be updated",
+     *          description="Example that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/User")
+     *          @SWG\Schema(ref="#/definitions/Example")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -202,7 +202,7 @@ class UserAPIController extends InfyOmBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/User"
+     *                  ref="#/definitions/Example"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -212,20 +212,20 @@ class UserAPIController extends InfyOmBaseController
      *      )
      * )
      */
-    public function update($id, UpdateUserAPIRequest $request)
+    public function update($id, UpdateExampleAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var User $user */
-        $user = $this->userRepository->find($id);
+        /** @var Example $example */
+        $example = $this->exampleRepository->find($id);
 
-        if (empty($user)) {
-            return Response::json(ResponseUtil::makeError('User not found'), 404);
+        if (empty($example)) {
+            return Response::json(ResponseUtil::makeError('Example not found'), 404);
         }
 
-        $user = $this->userRepository->update($input, $id);
+        $example = $this->exampleRepository->update($input, $id);
 
-        return $this->sendResponse($user->toArray(), 'User updated successfully');
+        return $this->sendResponse($example->toArray(), 'Example updated successfully');
     }
 
     /**
@@ -233,14 +233,14 @@ class UserAPIController extends InfyOmBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/user/{id}",
-     *      summary="Remove the specified User from storage",
-     *      tags={"User"},
-     *      description="Delete User",
+     *      path="/examples/{id}",
+     *      summary="Remove the specified Example from storage",
+     *      tags={"Example"},
+     *      description="Delete Example",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of User",
+     *          description="id of Example",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -268,38 +268,15 @@ class UserAPIController extends InfyOmBaseController
      */
     public function destroy($id)
     {
-        /** @var User $user */
-        $user = $this->userRepository->find($id);
+        /** @var Example $example */
+        $example = $this->exampleRepository->find($id);
 
-        if (empty($user)) {
-            return Response::json(ResponseUtil::makeError('User not found'), 404);
+        if (empty($example)) {
+            return Response::json(ResponseUtil::makeError('Example not found'), 404);
         }
 
-        $user->delete();
+        $example->delete();
 
-        return $this->sendResponse($id, 'User deleted successfully');
+        return $this->sendResponse($id, 'Example deleted successfully');
     }
-
-    public function showWithUser($id)
-    {
-        /** @var User $user */
-        $user = $this->userRepository->with('user')->find($id);
-
-        if (empty($user)) {
-            return Response::json(ResponseUtil::makeError('User with user not found'), 404);
-        }
-
-        return $this->sendResponse($user->toArray(), 'User With User retrieved successfully');
-    }
-
-
-    public function register(CreateUserAPIRequest $request,$rol)
-    {
-        $input = $request->all();
-
-        $alldata = $this->userRepository->register($input,$rol);
-
-        return $this->sendResponse($alldata, 'Register saved successfully');
-    }
-
 }

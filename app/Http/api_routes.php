@@ -36,12 +36,20 @@ Route::resource('needies', 'NeedyAPIController');
 
 
 
+
+
 Route::resource('contributors', 'ContributorAPIController');
 
 Route::resource('helps', 'HelpAPIController');
 
+
+
+
+
 Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
 
   Route::resource('images', 'ImageAPIController');
+  Route::resource('examples', 'ExampleAPIController');
 
 });
+
