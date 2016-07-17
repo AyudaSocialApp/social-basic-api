@@ -27,12 +27,17 @@ class UserRepository extends BaseRepository
         return User::class;
     }
 
+    /**
+     * @param  array $input
+     * @param  int $idrol
+     * @return mixed
+     */
     public function register($input,$idrol){
       
       try {
 
         $tablerol = "";
-        $himage = new Image(' ');
+        $himage = new Image;
         $newuser = [
           'email' => strtolower($input['username']),
           'name' => ucfirst(strtolower($input['names']))." ".ucfirst(strtolower($input['last_names'])),
@@ -53,7 +58,9 @@ class UserRepository extends BaseRepository
             "base64" => $himage->resizeBase64andScaleHeight($input['base64']['base64'],strtolower($input['base64']['filetype']),300),
             "filetype" => strtolower($input['base64']['filetype']),
             "preview" => $himage->resizeBase64img($input['base64']['base64'],strtolower($input['base64']['filetype']),80,71),
-            "cellphone_telephone_contact" => $input['cellphone_telephone_contact']
+            "cellphone_telephone_contact" => $input['cellphone_telephone_contact'],
+            "name_business" => $input['name_business']
+
           ];
         }else{
           // needies
@@ -95,4 +102,18 @@ class UserRepository extends BaseRepository
       }
 
     }
+
+
+    public function validateRepeatUser($user){
+
+      $arr = $this->findWhere(['email'=>$user]);
+
+      if( count($arr) > 0 ){
+        return true;
+      }else{
+        return false;
+      }
+
+    }
+
 }

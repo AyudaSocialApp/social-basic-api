@@ -16,6 +16,7 @@ Route::get('logout', 'SesionAPIController@destroy');
 
 Route::post('register/{rol}', 'UserAPIController@register');
 
+Route::get('validate_user/{user}', 'UserAPIController@validateRepeatUser');
 
 Route::resource('typeneedies', 'TypeneedyAPIController');
 

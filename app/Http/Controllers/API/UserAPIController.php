@@ -302,4 +302,13 @@ class UserAPIController extends InfyOmBaseController
         return $this->sendResponse($alldata, 'Register saved successfully');
     }
 
+
+    public function validateRepeatUser($user)
+    {
+
+        $res = $this->userRepository->validateRepeatUser($user);
+
+        return $this->sendResponse(['res'=>$res], 'Verification done successfully');
+    }
+
 }
