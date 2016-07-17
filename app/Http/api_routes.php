@@ -9,6 +9,7 @@
 |
 */
 
+Route::get('token', 'App\Http\Controllers\Auth\AuthController@token');
 
 Route::post('login', 'SesionAPIController@store');
 
@@ -23,34 +24,24 @@ Route::resource('typeneedies', 'TypeneedyAPIController');
 Route::get('typeneedies_e/familytype', 'TypeneedyAPIController@getFamilyType');
 
 
-Route::resource('ideas', 'IdeasAPIController');
-
-Route::get('ideas_e/showwithuser/{id}', 'IdeasAPIController@showWithUser');
-
 Route::resource('typeidentifications', 'TypeidentificationAPIController');
 
 Route::resource('typecontributors', 'TypecontributorAPIController');
 
 Route::resource('typehelps', 'TypehelpAPIController');
 
-Route::resource('needies', 'NeedyAPIController');
+Route::resource('needies', 'NeedyAPIController'); // algunas tienen restricción.
 
-
-
-
-
-Route::resource('contributors', 'ContributorAPIController');
-
-Route::resource('helps', 'HelpAPIController');
-
-
-
+Route::resource('contributors', 'ContributorAPIController'); // algunas tienen restricción.
 
 
 Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
 
   Route::resource('images', 'ImageAPIController');
   Route::resource('examples', 'ExampleAPIController');
+  Route::resource('helps', 'HelpAPIController'); 
+  Route::resource('ideas', 'IdeasAPIController');
+  Route::get('ideas_e/showwithuser/{id}', 'IdeasAPIController@showWithUser');
 
 });
 
