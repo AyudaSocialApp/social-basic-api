@@ -7,6 +7,8 @@ use App\Http\Controllers\AppBaseController as InfyOmBaseController;
 use InfyOm\Generator\Utils\ResponseUtil;
 use Response;
 use JWTAuth;
+use App\Repositories\ContributorRepository;
+use App\Repositories\NeedyRepository;
 
 /**
  * Class SesionController
@@ -17,9 +19,10 @@ class SesionAPIController extends InfyOmBaseController
 {
 
 
-    public function store(Request $request)
+    public function store(Request $request,ContributorRepository $cr, NeedyRepository $nr)
     {
         $credentials = $request->only(['email','password']);
+        $rol = $request->input('rol');
 
         $credentials['email'] = strtolower($credentials['email']);
 
@@ -28,9 +31,16 @@ class SesionAPIController extends InfyOmBaseController
         }
 
         $user = JWTAuth::toUser($token);
+        
+        if($rol == 1){
+          $userrol = $cr->findWhere(['users_id'=>$user->id]);
+        }else{
+          $userrol = $nr->findWhere(['users_id'=>$user->id]);
+        }
 
         return $this->sendResponse([
                         'user'=>$user,
+                        'userrol'=>$userrol,
                         'token' => compact('token')
                         ],'Sesion saved successfully');
     }
