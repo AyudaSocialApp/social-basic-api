@@ -69,7 +69,9 @@ class Needy extends Model
         'preview',
         'cellphone_telephone_contact',
         'users_id',
-        'filetype'
+        'filetype',
+        'base64',
+        'type_needy_id'
     ];
 
     /**

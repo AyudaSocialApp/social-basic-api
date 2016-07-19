@@ -302,6 +302,14 @@ class UserAPIController extends InfyOmBaseController
         return $this->sendResponse($alldata, 'Register saved successfully');
     }
 
+    public function editRegister(CreateUserAPIRequest $request,$rol){
+        $input = $request->all();
+
+        $alldata = $this->userRepository->editRegister($input,$rol);
+
+        return $this->sendResponse($alldata, 'Register Edited successfully');
+    }
+
 
     public function validateRepeatUser($user)
     {

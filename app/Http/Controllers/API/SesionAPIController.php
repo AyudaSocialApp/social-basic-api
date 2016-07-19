@@ -30,12 +30,17 @@ class SesionAPIController extends InfyOmBaseController
             return Response::json(ResponseUtil::makeError('failure logging'), 200);
         }
 
+
         $user = JWTAuth::toUser($token);
         
         if($rol == 1){
           $userrol = $cr->findWhere(['users_id'=>$user->id]);
         }else{
           $userrol = $nr->findWhere(['users_id'=>$user->id]);
+        }
+
+        if(count($userrol) < 1){
+          return Response::json(['Error Rol'], 200);
         }
 
         return $this->sendResponse([
