@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="Help",
- *      required={type_helps_id, description, date, contributors_id, needy_id, place_delivery, date_hour, type_needy_id},
+ *      required={type_helps_id, description, date, contributors_id, needy_id, place_delivery, date_hour},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -55,12 +55,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="boolean"
  *      ),
  *      @SWG\Property(
- *          property="type_needy_id",
- *          description="type_needy_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -92,8 +86,7 @@ class Help extends Model
         'needy_id',
         'place_delivery',
         'date_hour',
-        'delivered',
-        'type_needy_id'
+        'delivered'
     ];
 
     /**
@@ -109,8 +102,7 @@ class Help extends Model
         'needy_id' => 'integer',
         'place_delivery' => 'string',
         'date_hour' => 'datetime',
-        'delivered' => 'boolean',
-        'type_needy_id' => 'integer'
+        'delivered' => 'boolean'
     ];
 
     /**
@@ -125,7 +117,19 @@ class Help extends Model
         'contributors_id' => 'required',
         'needy_id' => 'required',
         'place_delivery' => 'required',
-        'date_hour' => 'required',
-        'type_needy_id' => 'required'
+        'date_hour' => 'required'
     ];
+
+    public function contributor() {
+        return $this->belongsTo('App\Models\Contributor','contributors_id');
+    }
+
+    public function typehelp() {
+        return $this->belongsTo('App\Models\Typecontributor','type_helps_id');
+    }
+
+    public function needy() {
+        return $this->belongsTo('App\Models\Needy','needy_id');
+    }
+
 }

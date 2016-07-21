@@ -8,13 +8,105 @@
 
 
 <pre class='xdebug-var-dump' dir='ltr'>
-<b>object</b>(<i>Illuminate\Database\Eloquent\Collection</i>)[<i>382</i>]
-  <i>protected</i> 'items' <font color='#888a85'>=&gt;</font> 
+<b>object</b>(<i>App\Models\Needy</i>)[<i>370</i>]
+  <i>public</i> 'table' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'needies'</font> <i>(length=7)</i>
+  <i>protected</i> 'dates' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=1)</i>
+      0 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'deleted_at'</font> <i>(length=10)</i>
+  <i>public</i> 'fillable' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=12)</i>
+      0 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'names'</font> <i>(length=5)</i>
+      1 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'last_names'</font> <i>(length=10)</i>
+      2 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'identification'</font> <i>(length=14)</i>
+      3 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'type_identifications_id'</font> <i>(length=23)</i>
+      4 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'history'</font> <i>(length=7)</i>
+      5 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'contributor'</font> <i>(length=11)</i>
+      6 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'preview'</font> <i>(length=7)</i>
+      7 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'cellphone_telephone_contact'</font> <i>(length=27)</i>
+      8 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'users_id'</font> <i>(length=8)</i>
+      9 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'filetype'</font> <i>(length=8)</i>
+      10 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'base64'</font> <i>(length=6)</i>
+      11 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'type_needy_id'</font> <i>(length=13)</i>
+  <i>protected</i> 'casts' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=4)</i>
+      'names' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'string'</font> <i>(length=6)</i>
+      'last_names' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'string'</font> <i>(length=6)</i>
+      'history' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'string'</font> <i>(length=6)</i>
+      'contributor' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'string'</font> <i>(length=6)</i>
+  <i>protected</i> 'connection' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+  <i>protected</i> 'primaryKey' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'id'</font> <i>(length=2)</i>
+  <i>protected</i> 'keyType' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'int'</font> <i>(length=3)</i>
+  <i>protected</i> 'perPage' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>15</font>
+  <i>public</i> 'incrementing' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>true</font>
+  <i>public</i> 'timestamps' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>true</font>
+  <i>protected</i> 'attributes' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=17)</i>
+      'id' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>5</font>
+      'names' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Juan'</font> <i>(length=4)</i>
+      'last_names' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Hernandez'</font> <i>(length=9)</i>
+      'identification' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'5465433'</font> <i>(length=7)</i>
+      'type_identifications_id' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+      'history' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod&#10;tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,&#10;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&#10;consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse&#10;cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non&#10;proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'</font> <i>(length=446)</i>
+      'contributor' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Stivenson Rincón'</font> <i>(length=17)</i>
+      'cellphone_telephone_contact' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'31544332'</font> <i>(length=8)</i>
+      'users_id' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>40</font>
+      'created_at' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      'updated_at' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      'deleted_at' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      'city' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Cúcuta'</font> <i>(length=7)</i>
+      'preview' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'R0lGODdhUABHAOcAABQGFJSKhFxGPFQSJMzGxDwmHLSqpDQGDHRqdFQuNHwuPLSalCQWFHxGTOTm3MS6tDQWFFw6PJxqZEQ2NKSalCQGDFQiJNzWzDwuPDQeJLyyrGQuNHxaTKSOfGRWVDQuJHx6dPz29LSinCweFMzCvJSCfCQSFGQiLGxGREQmJEQSHFw2NEQWJGxCNFQqLOzazCwOFBwOFFRKZFQaHNTSzMSqpHRCPHROTPTu5My6rFxCREQeFMS2rIxiVKSWjJySlFxORDQmLLyupDQOHHx2bFwuLCQWJDwaHFw6RKyinGw2PHRiXIx6dMSmlKyCfCwSFGQaJIROTBwKFJSOlFxKTNzKxHxqZLyalCQaHPTq5MS+tDQWJFw+NKxqbEQ+RKyahFQmLOTe1Ly2rGwyLKyShGRabEQyLPz+/LyinCwiLJx+bFwqJPTi3FweLIQ6THxSREQeJDwqNBQKFJSOhFxGRNTKzLSupDQKFFQuPIwyRLSelCQW'...</font> <i>(length=6168)</i>
+      'filetype' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'image/gif'</font> <i>(length=9)</i>
+      'base64' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'R0lGODdhLAEsAecAABQGFJSKhFxGPFQSJMzGxDwmHHRqdDQGDLSqpFQuNHxGTJRmXDQWFHwuPLSalCQWFOTm3LyupFw6PMS6tFQiJEQ2NKSalCQGDHxaTJR2ZGRWVNzWzDwuPEQGFDQeJHx2bGQuNKSOfDQuJLSinPz29LyyrHQmNGxGRCweFMzCvGQiLCQSFKR6ZEQOFFQaHEQmJFw2NJROVEQWJHw6NGxCNFQqLJRWTOzazIyClCwOFBwOFFRKZNTSzHxOPKRmZPTu5FxCRMy6rEQeFISCfKSWjMS2rEwOHJySlFxORDQmLIRmVDQOHFwuLDwaHMSWjCQWJFw6RKyinHxiZJSCfHRiXIx6bGw2PMSmlGQaJIQ6TCwSFHxSVBwKFJSOlFxKTNzKxHxqZJy6lJxqZDQWJLyalCQaHPTq5MSqpFw+NMS+tFQmLEQ+RKyahIReTGRabOTe1GwyLKyShEQyLLyinPz+/Ly2rCwiLKyCfEQSHFweLHRCPFwq'...</font> <i>(length=58832)</i>
+      'type_needy_id' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>protected</i> 'original' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=17)</i>
+      'id' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>5</font>
+      'names' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Juan'</font> <i>(length=4)</i>
+      'last_names' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Hernandez'</font> <i>(length=9)</i>
+      'identification' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'5465433'</font> <i>(length=7)</i>
+      'type_identifications_id' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+      'history' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod&#10;tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,&#10;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo&#10;consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse&#10;cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non&#10;proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'</font> <i>(length=446)</i>
+      'contributor' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Stivenson Rincón'</font> <i>(length=17)</i>
+      'cellphone_telephone_contact' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'31544332'</font> <i>(length=8)</i>
+      'users_id' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>40</font>
+      'created_at' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      'updated_at' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      'deleted_at' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      'city' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Cúcuta'</font> <i>(length=7)</i>
+      'preview' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'R0lGODdhUABHAOcAABQGFJSKhFxGPFQSJMzGxDwmHLSqpDQGDHRqdFQuNHwuPLSalCQWFHxGTOTm3MS6tDQWFFw6PJxqZEQ2NKSalCQGDFQiJNzWzDwuPDQeJLyyrGQuNHxaTKSOfGRWVDQuJHx6dPz29LSinCweFMzCvJSCfCQSFGQiLGxGREQmJEQSHFw2NEQWJGxCNFQqLOzazCwOFBwOFFRKZFQaHNTSzMSqpHRCPHROTPTu5My6rFxCREQeFMS2rIxiVKSWjJySlFxORDQmLLyupDQOHHx2bFwuLCQWJDwaHFw6RKyinGw2PHRiXIx6dMSmlKyCfCwSFGQaJIROTBwKFJSOlFxKTNzKxHxqZLyalCQaHPTq5MS+tDQWJFw+NKxqbEQ+RKyahFQmLOTe1Ly2rGwyLKyShGRabEQyLPz+/LyinCwiLJx+bFwqJPTi3FweLIQ6THxSREQeJDwqNBQKFJSOhFxGRNTKzLSupDQKFFQuPIwyRLSelCQW'...</font> <i>(length=6168)</i>
+      'filetype' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'image/gif'</font> <i>(length=9)</i>
+      'base64' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'R0lGODdhLAEsAecAABQGFJSKhFxGPFQSJMzGxDwmHHRqdDQGDLSqpFQuNHxGTJRmXDQWFHwuPLSalCQWFOTm3LyupFw6PMS6tFQiJEQ2NKSalCQGDHxaTJR2ZGRWVNzWzDwuPEQGFDQeJHx2bGQuNKSOfDQuJLSinPz29LyyrHQmNGxGRCweFMzCvGQiLCQSFKR6ZEQOFFQaHEQmJFw2NJROVEQWJHw6NGxCNFQqLJRWTOzazIyClCwOFBwOFFRKZNTSzHxOPKRmZPTu5FxCRMy6rEQeFISCfKSWjMS2rEwOHJySlFxORDQmLIRmVDQOHFwuLDwaHMSWjCQWJFw6RKyinHxiZJSCfHRiXIx6bGw2PMSmlGQaJIQ6TCwSFHxSVBwKFJSOlFxKTNzKxHxqZJy6lJxqZDQWJLyalCQaHPTq5MSqpFw+NMS+tFQmLEQ+RKyahIReTGRabOTe1GwyLKyShEQyLLyinPz+/Ly2rCwiLKyCfEQSHFweLHRCPFwq'...</font> <i>(length=58832)</i>
+      'type_needy_id' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1</font>
+  <i>protected</i> 'relations' <font color='#888a85'>=&gt;</font> 
     <b>array</b> <i>(size=0)</i>
       <i><font color='#888a85'>empty</font></i>
+  <i>protected</i> 'hidden' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=0)</i>
+      <i><font color='#888a85'>empty</font></i>
+  <i>protected</i> 'visible' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=0)</i>
+      <i><font color='#888a85'>empty</font></i>
+  <i>protected</i> 'appends' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=0)</i>
+      <i><font color='#888a85'>empty</font></i>
+  <i>protected</i> 'guarded' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=1)</i>
+      0 <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'*'</font> <i>(length=1)</i>
+  <i>protected</i> 'dateFormat' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+  <i>protected</i> 'touches' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=0)</i>
+      <i><font color='#888a85'>empty</font></i>
+  <i>protected</i> 'observables' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=0)</i>
+      <i><font color='#888a85'>empty</font></i>
+  <i>protected</i> 'with' <font color='#888a85'>=&gt;</font> 
+    <b>array</b> <i>(size=0)</i>
+      <i><font color='#888a85'>empty</font></i>
+  <i>protected</i> 'morphClass' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+  <i>public</i> 'exists' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>true</font>
+  <i>public</i> 'wasRecentlyCreated' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>false</font>
+  <i>protected</i> 'forceDeleting' <font color='#888a85'>=&gt;</font> <small>boolean</small> <font color='#75507b'>false</font>
 </pre>
-
-
 
 
 

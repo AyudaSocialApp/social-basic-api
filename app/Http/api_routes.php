@@ -39,11 +39,19 @@ Route::resource('contributors', 'ContributorAPIController'); // algunas tienen r
 
 Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
 
+
+
+});
+
+
+// In testing
+
   Route::resource('images', 'ImageAPIController');
   Route::resource('examples', 'ExampleAPIController');
   Route::resource('helps', 'HelpAPIController'); 
   Route::resource('ideas', 'IdeasAPIController');
   Route::get('ideas_e/showwithuser/{id}', 'IdeasAPIController@showWithUser');
 
-});
-
+  Route::get('helps_e/contributor/{idcontributor}/{maxId}', 'HelpAPIController@indexWithForeysOfContributor');
+  Route::get('helps_e/needy/{idneedy}/{maxId}', 'HelpAPIController@indexWithForeysOfNeedy');
+  Route::get('helps_e/allneedy/{maxId}', 'HelpAPIController@indexWithAllNeedy');

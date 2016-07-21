@@ -26,7 +26,7 @@ class CreatehelpsTable extends Migration
             $table->integer('type_helps_id')->length(10)->unsigned();
             $table->text('description');
             $table->date('date');
-            $table->integer('contributors_id')->length(10)->unsigned();
+            $table->integer('contributors_id')->nullable()->length(10)->unsigned();
             $table->integer('needy_id')->length(10)->unsigned();
             $table->text('place_delivery');
             $table->dateTime('date_hour');

@@ -50,7 +50,6 @@ trait MakeHelpTrait
             'place_delivery' => $fake->text,
             'date_hour' => $fake->word,
             'delivered' => $fake->word,
-            'type_needy_id' => $fake->randomDigitNotNull,
             'created_at' => $fake->word,
             'updated_at' => $fake->word
         ], $helpFields);

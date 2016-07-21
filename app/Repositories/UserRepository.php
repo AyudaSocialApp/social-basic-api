@@ -187,6 +187,8 @@ class UserRepository extends BaseRepository
         $user = $this->find($id_user);
         $rol = $reporol->find($id_rol);
 
+        //var_dump($rol); exit();
+
         return ['user'=>$user,'userrol'=>$rol];
 
       } catch (Exception $e) {
