@@ -110,22 +110,14 @@ class Help extends Model
      *
      * @var array
      */
-    public static $rules = [
-        'type_helps_id' => 'required',
-        'description' => 'required',
-        'date' => 'required',
-        'contributors_id' => 'required',
-        'needy_id' => 'required',
-        'place_delivery' => 'required',
-        'date_hour' => 'required'
-    ];
+    public static $rules = [];
 
     public function contributor() {
         return $this->belongsTo('App\Models\Contributor','contributors_id');
     }
 
     public function typehelp() {
-        return $this->belongsTo('App\Models\Typecontributor','type_helps_id');
+        return $this->belongsTo('App\Models\Typehelp','type_helps_id');
     }
 
     public function needy() {

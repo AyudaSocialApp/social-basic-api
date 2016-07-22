@@ -55,3 +55,7 @@ Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
   Route::get('helps_e/contributor/{idcontributor}/{maxId}', 'HelpAPIController@indexWithForeysOfContributor');
   Route::get('helps_e/needy/{idneedy}/{maxId}', 'HelpAPIController@indexWithForeysOfNeedy');
   Route::get('helps_e/allneedy/{maxId}', 'HelpAPIController@indexWithAllNeedy');
+  Route::get('helps_e/lastneedy/{idneedy}', 'HelpAPIController@indexWithLastHelpOfNeedy');
+  
+  Route::post('helps_e', 'HelpAPIController@registerNewHelp');
+  

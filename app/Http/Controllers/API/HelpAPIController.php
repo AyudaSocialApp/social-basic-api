@@ -300,4 +300,20 @@ class HelpAPIController extends InfyOmBaseController
         $helps = $this->helpRepository->indexWithAllNeedy($maxId);
         return $this->sendResponse($helps->toArray(), 'Helps retrieved successfully'); 
     }
+
+    public function registerNewHelp(CreateHelpAPIRequest $request)
+    {
+        $input = $request->all();
+
+        $helps = $this->helpRepository->registerNewHelp($input);
+
+        return $this->sendResponse($helps->toArray(), 'Help saved successfully');
+    }
+
+
+    public function indexWithLastHelpOfNeedy($idneedy){
+        $helps = $this->helpRepository->indexWithLastHelpOfNeedy($idneedy);
+        return $this->sendResponse($helps->toArray(), 'Last Helps of needy retrieved successfully');
+    }
+
 }

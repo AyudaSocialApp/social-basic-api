@@ -96,6 +96,7 @@ class HelpRepository extends BaseRepository
             ->with('typehelp')
             ->with('needy')
             ->where('id','<=',$maxId)
+            ->whereNull('contributors_id')
             ->orderBy('id','DESC')
             ->take(10)
             ->get();
@@ -106,6 +107,33 @@ class HelpRepository extends BaseRepository
         return $this->parserResult($results);
     }
 
+    public function registerNewHelp($input)
+    {
+        date_default_timezone_set('America/Bogota');
+        $input['date'] = date('Y-m-d');
+        $input['delivered'] = false;
+        $input['type_helps_id'] = $input['type_helps_id']['id'];
+        return $this->create($input);
+        
+    }
+
+
+    public function indexWithLastHelpOfNeedy($idneedy){
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $results = $this->model
+            ->with('typehelp')
+            ->where('needy_id',$idneedy)
+            ->orderBy('id','DESC')
+            ->take(10)
+            ->get();
+
+        $this->resetModel();
+        $this->resetScope();
+
+        return $this->parserResult($results);
+    }
 
 
 }
