@@ -41,9 +41,15 @@ class HelpRepository extends BaseRepository
         $this->applyScope();
 
         $results = $this->model
-            ->with('contributor')
+            ->with(['contributor' => function($q)
+                    {
+                        $q->addSelect(['id', 'names', 'last_names', 'privacy', 'type_identifications_id', 'nit_id', 'type_contributors_id', 'filetype', 'cellphone_telephone_contact', 'users_id', 'created_at', 'updated_at', 'deleted_at', 'preview', 'name_business']);
+                    }])
+            ->with(['needy' => function($q)
+                    {
+                        $q->addSelect(['id', 'names', 'last_names', 'identification', 'type_identifications_id', 'history', 'contributor', 'cellphone_telephone_contact', 'users_id', 'created_at', 'updated_at', 'deleted_at', 'city', 'preview', 'filetype', 'type_needy_id']);
+                    }])
             ->with('typehelp')
-            ->with('needy')
             ->where('id','<=',$maxId)
             ->where('contributors_id',$idcontributor)
             ->orderBy('id','DESC')
@@ -68,9 +74,15 @@ class HelpRepository extends BaseRepository
         $this->applyScope();
 
         $results = $this->model
-            ->with('contributor')
+            ->with(['contributor' => function($q)
+                    {
+                        $q->addSelect(['id', 'names', 'last_names', 'privacy', 'type_identifications_id', 'nit_id', 'type_contributors_id', 'filetype', 'cellphone_telephone_contact', 'users_id', 'created_at', 'updated_at', 'deleted_at', 'preview', 'name_business']);
+                    }])
             ->with('typehelp')
-            ->with('needy')
+            ->with(['needy' => function($q)
+                    {
+                        $q->addSelect(['id', 'names', 'last_names', 'identification', 'type_identifications_id', 'history', 'contributor', 'cellphone_telephone_contact', 'users_id', 'created_at', 'updated_at', 'deleted_at', 'city', 'preview', 'filetype', 'type_needy_id']);
+                    }])
             ->where('id','<=',$maxId)
             ->where('needy_id',$idneedy)
             ->orderBy('id','DESC')
@@ -94,7 +106,10 @@ class HelpRepository extends BaseRepository
 
         $results = $this->model
             ->with('typehelp')
-            ->with('needy')
+            ->with(['needy' => function($q)
+                    {
+                        $q->addSelect(['id', 'names', 'last_names', 'identification', 'type_identifications_id', 'history', 'contributor', 'cellphone_telephone_contact', 'users_id', 'created_at', 'updated_at', 'deleted_at', 'city', 'preview', 'filetype', 'type_needy_id']);
+                    }])
             ->where('id','<=',$maxId)
             ->whereNull('contributors_id')
             ->orderBy('id','DESC')
