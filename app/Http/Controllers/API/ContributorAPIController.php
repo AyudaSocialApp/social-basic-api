@@ -279,4 +279,11 @@ class ContributorAPIController extends InfyOmBaseController
 
         return $this->sendResponse($id, 'Contributor deleted successfully');
     }
+
+
+    public function getbigImage($id)
+    {
+        $base64 = $this->contributorRepository->getbigImage($id);
+        return $this->sendResponse($base64, 'Contributor big image retrieved successfully');
+    }
 }

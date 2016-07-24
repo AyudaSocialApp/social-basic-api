@@ -33,9 +33,10 @@ Route::resource('typecontributors', 'TypecontributorAPIController');
 Route::resource('typehelps', 'TypehelpAPIController');
 
 Route::resource('needies', 'NeedyAPIController'); // algunas tienen restricción.
+Route::get('needies_big_image/{id}', 'NeedyAPIController@getbigImage');
 
 Route::resource('contributors', 'ContributorAPIController'); // algunas tienen restricción.
-
+Route::get('contributors_big_image/{id}', 'ContributorAPIController@getbigImage');
 
 Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
 

@@ -31,4 +31,13 @@ class ContributorRepository extends BaseRepository
     {
         return Contributor::class;
     }
+
+
+    public function getbigImage($id){
+        $obj = $this->find($id);
+        if (empty($obj)) {
+            return Response::json(ResponseUtil::makeError('Contributor not found'), 404);
+        }
+        return $obj->base64;
+    }
 }

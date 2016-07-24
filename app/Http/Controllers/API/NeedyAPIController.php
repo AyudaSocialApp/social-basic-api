@@ -279,4 +279,11 @@ class NeedyAPIController extends InfyOmBaseController
 
         return $this->sendResponse($id, 'Needy deleted successfully');
     }
+
+    public function getbigImage($id)
+    {
+        $base64 = $this->needyRepository->getbigImage($id);
+        return $this->sendResponse($base64, 'Needy big image retrieved successfully');
+    }
+
 }
