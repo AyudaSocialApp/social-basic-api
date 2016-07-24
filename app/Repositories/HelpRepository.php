@@ -150,5 +150,30 @@ class HelpRepository extends BaseRepository
         return $this->parserResult($results);
     }
 
+    public function updateAsColaborator($input){
+
+        try{
+            $id_help = $input['id_help'];
+            $help = $this->model->find($id_help);
+            $help->contributors_id = $input['id_contributor'];
+            $help->type_helps_id = $input['type_helps_id']['id'];
+            $help->description = $input['description'];
+            $help->place_delivery = $input['place_delivery'];
+            $help->date_hour = $input['date_hour'];
+            $help->save();
+            return $help->toArray();
+        }catch(Exceptio $e){
+            return false;
+        }
+        
+    }
+
+    public function updateAsDelivered(){
+        
+    }
+
+    public function updateAsAccepted(){
+        
+    }
 
 }

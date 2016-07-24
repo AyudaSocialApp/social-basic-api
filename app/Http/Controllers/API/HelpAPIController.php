@@ -316,4 +316,10 @@ class HelpAPIController extends InfyOmBaseController
         return $this->sendResponse($helps->toArray(), 'Last Helps of needy retrieved successfully');
     }
 
+    public function updateAsColaborator(Request $request){
+        $input = $request->all();
+        $help = $this->helpRepository->updateAsColaborator($input);
+        return $this->sendResponse($help, 'Help updated successfully');        
+    } 
+
 }
