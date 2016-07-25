@@ -320,6 +320,18 @@ class HelpAPIController extends InfyOmBaseController
         $input = $request->all();
         $help = $this->helpRepository->updateAsColaborator($input);
         return $this->sendResponse($help, 'Help updated successfully');        
+    }
+
+    public function updateAsDelivered(Request $request){
+        $input = $request->all();
+        $help = $this->helpRepository->updateAsDelivered($input);
+        return $this->sendResponse($help, 'Help updated successfully'); 
+    } 
+
+    public function updateAsAccepted(Request $request){
+        $input = $request->all();
+        $help = $this->helpRepository->updateAsAccepted($input);
+        return $this->sendResponse($help, 'Help updated successfully'); 
     } 
 
 }

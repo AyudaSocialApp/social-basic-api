@@ -9,7 +9,7 @@
 |
 */
 
-Route::get('token', 'App\Http\Controllers\Auth\AuthController@token');
+Route::get('token', '..\Auth\AuthController@token');
 
 Route::post('login', 'SesionAPIController@store');
 
@@ -59,4 +59,6 @@ Route::group(['middleware' => ['before' => 'jwt.auth']], function () {
   Route::get('helps_e/lastneedy/{idneedy}', 'HelpAPIController@indexWithLastHelpOfNeedy');
   Route::post('helps_e', 'HelpAPIController@registerNewHelp');
   Route::post('helps_e/register_help', 'HelpAPIController@updateAsColaborator');
+  Route::post('helps_e/register_delivered', 'HelpAPIController@updateAsDelivered');
+  Route::post('helps_e/register_accepted', 'HelpAPIController@updateAsAccepted');
   

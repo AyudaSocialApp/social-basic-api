@@ -49,7 +49,7 @@ class HelpRepository extends BaseRepository
                     {
                         $q->addSelect(['id', 'names', 'last_names', 'identification', 'type_identifications_id', 'history', 'contributor', 'cellphone_telephone_contact', 'users_id', 'created_at', 'updated_at', 'deleted_at', 'city', 'preview', 'filetype', 'type_needy_id']);
                     }])
-            ->with('typehelp')
+            ->with('typehelp') // Ya esta
             ->where('id','<=',$maxId)
             ->where('contributors_id',$idcontributor)
             ->orderBy('id','DESC')
@@ -162,18 +162,34 @@ class HelpRepository extends BaseRepository
             $help->date_hour = $input['date_hour'];
             $help->save();
             return $help->toArray();
-        }catch(Exceptio $e){
+        }catch(Exception $e){
             return false;
         }
         
     }
 
-    public function updateAsDelivered(){
-        
+    public function updateAsDelivered($input){
+        try{
+            $id_help = $input['id_help'];
+            $help = $this->model->find($id_help);
+            $help->delivered = $input['delivered'];
+            $help->save();
+            return $help->toArray();
+        }catch(Exception $e){
+            return false;
+        }        
     }
 
-    public function updateAsAccepted(){
-        
+    public function updateAsAccepted($input){
+        try{
+            $id_help = $input['id_help'];
+            $help = $this->model->find($id_help);
+            $help->accepted = $input['accepted'];
+            $help->save();
+            return $help->toArray();
+        }catch(Exception $e){
+            return false;
+        }                
     }
 
 }
