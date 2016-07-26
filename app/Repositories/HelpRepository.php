@@ -30,12 +30,32 @@ class HelpRepository extends BaseRepository
     }
 
 
+    public function defineMaxid($maxId){
+        $this->applyCriteria();
+        $this->applyScope();
+
+        try {
+            if(is_null($maxId) || $maxId == '-'){
+                return  $this->model->orderBy('id','DESC')->first()->id;
+            }
+        } catch (Exception $e) {
+
+        }
+
+        $this->resetModel();
+        $this->resetScope();
+
+        return $maxId;
+    }
+
     /**
     * Obtener el listado de mis ayudas de un colaborador con todas las foraneas para detallar
     * de a 10 por vez teniendo en cuenta un ID maximo, descendentemente según el ID
     **/
     public function indexWithForeysOfContributor($idcontributor,$maxId)
     {
+
+        $maxId = $this->defineMaxid($maxId);
 
         $this->applyCriteria();
         $this->applyScope();
@@ -53,13 +73,20 @@ class HelpRepository extends BaseRepository
             ->where('id','<=',$maxId)
             ->where('contributors_id',$idcontributor)
             ->orderBy('id','DESC')
-            ->take(10)
+            ->take(20)
             ->get();
 
         $this->resetModel();
         $this->resetScope();
 
-        return $this->parserResult($results);
+        if(count($results) > 0){
+            $lastResultDesc = $results[count($results)-1];
+            $maxId = $lastResultDesc->id - 1;
+        }else{
+            $maxId = -1;
+        }
+
+        return $this->parserResult(['list'=>$results,'maxId'=>$maxId]);
     }
 
 
@@ -69,6 +96,8 @@ class HelpRepository extends BaseRepository
     **/
     public function indexWithForeysOfNeedy($idneedy,$maxId)
     {
+
+        $maxId = $this->defineMaxid($maxId);
 
         $this->applyCriteria();
         $this->applyScope();
@@ -86,13 +115,20 @@ class HelpRepository extends BaseRepository
             ->where('id','<=',$maxId)
             ->where('needy_id',$idneedy)
             ->orderBy('id','DESC')
-            ->take(10)
+            ->take(20)
             ->get();
 
         $this->resetModel();
         $this->resetScope();
 
-        return $this->parserResult($results);
+        if(count($results) > 0){
+            $lastResultDesc = $results[count($results)-1];
+            $maxId = $lastResultDesc->id - 1;
+        }else{
+            $maxId = -1;
+        }
+
+        return $this->parserResult(['list'=>$results,'maxId'=>$maxId]);
     }
 
     /**
@@ -100,6 +136,8 @@ class HelpRepository extends BaseRepository
     **/
     public function indexWithAllNeedy($maxId)
     {
+
+        $maxId = $this->defineMaxid($maxId);
 
         $this->applyCriteria();
         $this->applyScope();
@@ -113,13 +151,20 @@ class HelpRepository extends BaseRepository
             ->where('id','<=',$maxId)
             ->whereNull('contributors_id')
             ->orderBy('id','DESC')
-            ->take(10)
+            ->take(6)
             ->get();
 
         $this->resetModel();
         $this->resetScope();
 
-        return $this->parserResult($results);
+        if(count($results) > 0){
+            $lastResultDesc = $results[count($results)-1];
+            $maxId = $lastResultDesc->id - 1;
+        }else{
+            $maxId = -1;
+        }
+
+        return $this->parserResult(['list'=>$results,'maxId'=>$maxId]);
     }
 
     public function registerNewHelp($input)

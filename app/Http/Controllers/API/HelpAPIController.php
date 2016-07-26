@@ -284,21 +284,21 @@ class HelpAPIController extends InfyOmBaseController
         $this->helpRepository->pushCriteria(new RequestCriteria($request));
         $this->helpRepository->pushCriteria(new LimitOffsetCriteria($request));
         $helps = $this->helpRepository->indexWithForeysOfContributor($idcontributor,$maxId);
-        return $this->sendResponse($helps->toArray(), 'Helps retrieved successfully');
+        return $this->sendResponse($helps, 'Helps retrieved successfully');
     }
 
     public function indexWithForeysOfNeedy(Request $request,$idneedy,$maxId){
         $this->helpRepository->pushCriteria(new RequestCriteria($request));
         $this->helpRepository->pushCriteria(new LimitOffsetCriteria($request));
         $helps = $this->helpRepository->indexWithForeysOfNeedy($idneedy,$maxId);
-        return $this->sendResponse($helps->toArray(), 'Helps retrieved successfully');
+        return $this->sendResponse($helps, 'Helps retrieved successfully');
     }
 
     public function indexWithAllNeedy(Request $request,$maxId){
         $this->helpRepository->pushCriteria(new RequestCriteria($request));
         $this->helpRepository->pushCriteria(new LimitOffsetCriteria($request));
         $helps = $this->helpRepository->indexWithAllNeedy($maxId);
-        return $this->sendResponse($helps->toArray(), 'Helps retrieved successfully'); 
+        return $this->sendResponse($helps, 'Helps retrieved successfully'); 
     }
 
     public function registerNewHelp(CreateHelpAPIRequest $request)
